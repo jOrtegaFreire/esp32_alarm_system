@@ -1,0 +1,5 @@
+{
+    "armed_state":"Armed",
+    "disarmed_state":"Disarmed",
+    "breached_state":"Breached"
+}

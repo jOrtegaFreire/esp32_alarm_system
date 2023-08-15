@@ -1,0 +1,5 @@
+{
+    "armed_state":"Activada",
+    "disarmed_state":"Desactivada",
+    "breached_state":"Intrusion"
+}

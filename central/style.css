@@ -1,0 +1,48 @@
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+h1.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.row{
+    width: 615px;
+    border: solid 1px #aaa;
+    text-align: center;
+    font-size: 20px;
+    letter-spacing: 35px;
+    white-space: nowrap;
+    line-height: 12px;
+    overflow: hidden;    
+}
+.col{
+    width: 100px;
+    height: 100px;
+    border: solid 1px #ccc;
+    display: inline-block;
+    vertical-align: middle;
+}
+.right{
+    display: block;
+    margin-left: auto;
+    width: 75px;
+}
+.control-btn{
+    width: 50%;
+    height: 300px;
+    float: left;
+    text-align: center;
+}
+img{
+    height: 300px;
+    height: auto;
+}
+table{
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+}
