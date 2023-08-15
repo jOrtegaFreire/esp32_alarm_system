@@ -72,11 +72,6 @@ sirens={
     }
 }
 
-
-def init_sensor_timeout():
-    for device in devices:
-        devices[device]['timeout']=ticks_ms()
-
 def start_alarm():
     global alarm_running
     if alarm_armed:
@@ -95,21 +90,6 @@ def stop_alarm():
         rf.send_msg(siren+'0')
         sleep_ms(50)
     alarm.duty(0)
-
-# read rf msg from sensors and update devices states
-def process_sensor_msg():
-    msg=rf.recv_msg()
-    if msg is not None:
-        try:
-            msg=msg.decode()
-            print(f'sensor_msg: {msg}')
-            msgs=[msg[(i*7):(i*7)+7] for i in range(0,len(msg)//7)]
-            for _msg in msgs:
-                if _msg[:-1] in devices.keys():
-                    devices[_msg[:-1]]['state']=int(_msg[-1])
-                    devices[_msg[:-1]]['timeout']=ticks_ms()
-        except:
-            print('Error reading sensor information')
 
 def request_devices_information():
     global max_retries
@@ -136,17 +116,6 @@ def request_devices_information():
             if retries>max_device_retries:
                 devices[device]['state']=1
             if retries>max_retries:max_retries=retries
-
-
-def check_sensor_timeout():
-    global max_ticks_dif
-    for device in devices:
-        ticks_diff=ticks_ms()-devices[device]['timeout']
-        if ticks_diff>max_ticks_dif:max_ticks_dif=ticks_diff
-        print(f'max_ticks_dif:{max_ticks_dif}')
-        print(f'device:{devices[device]["type"]} timeout: {devices[device]["timeout"]}timout_dif: {ticks_ms()-devices[device]["timeout"]}')
-        if ticks_diff>sensor_timeout_ms:
-            devices[device]['state']=1
 
 # get a client request
 def get_request(_socket):
